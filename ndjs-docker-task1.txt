@@ -1,0 +1,77 @@
+Windows PowerShell
+(C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+Попробуйте новую кроссплатформенную оболочку PowerShell (https://aka.ms/pscore6)
+
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+45a0cdc5c8d3: Pull complete
+Digest: sha256:3b3128d9df6bbbcc92e2358e596c9fbd722a437a62bafbc51607970e9e3b8869
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=1 ttl=37 time=49.907 ms
+64 bytes from 188.114.99.224: seq=2 ttl=37 time=49.292 ms
+64 bytes from 188.114.99.224: seq=3 ttl=37 time=49.469 ms
+64 bytes from 188.114.99.224: seq=4 ttl=37 time=49.183 ms
+64 bytes from 188.114.99.224: seq=5 ttl=37 time=49.228 ms
+64 bytes from 188.114.99.224: seq=6 ttl=37 time=49.010 ms
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+364b05ea84c8   busybox   "ping -c 7 netology.…"   18 seconds ago   Exited (0) 12 seconds ago             pinger
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=37 time=46.761 ms
+64 bytes from 188.114.99.224: seq=1 ttl=37 time=49.907 ms
+64 bytes from 188.114.99.224: seq=2 ttl=37 time=49.292 ms
+64 bytes from 188.114.99.224: seq=3 ttl=37 time=49.469 ms
+64 bytes from 188.114.99.224: seq=4 ttl=37 time=49.183 ms
+64 bytes from 188.114.99.224: seq=5 ttl=37 time=49.228 ms
+64 bytes from 188.114.99.224: seq=6 ttl=37 time=49.010 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 46.761/48.978/49.907 ms
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker start pinger                                      
+pinger
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker attach pinger                                     
+64 bytes from 188.114.99.224: seq=5 ttl=37 time=50.008 ms
+64 bytes from 188.114.99.224: seq=6 ttl=37 time=49.555 ms
+
+7 packets transmitted, 5 packets received, 28% packet loss
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker ps -a                                             
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                      PORTS     NAMES
+364b05ea84c8   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) 17 seconds ago             pinger
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker logs pinger  
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=37 time=46.761 ms
+64 bytes from 188.114.99.224: seq=1 ttl=37 time=49.907 ms
+64 bytes from 188.114.99.224: seq=2 ttl=37 time=49.292 ms
+64 bytes from 188.114.99.224: seq=3 ttl=37 time=49.469 ms
+64 bytes from 188.114.99.224: seq=4 ttl=37 time=49.183 ms
+64 bytes from 188.114.99.224: seq=5 ttl=37 time=49.228 ms
+64 bytes from 188.114.99.224: seq=6 ttl=37 time=49.010 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 46.761/48.978/49.907 ms
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=37 time=46.796 ms
+64 bytes from 188.114.99.224: seq=2 ttl=37 time=46.344 ms
+64 bytes from 188.114.99.224: seq=3 ttl=37 time=46.190 ms
+64 bytes from 188.114.99.224: seq=5 ttl=37 time=50.008 ms
+64 bytes from 188.114.99.224: seq=6 ttl=37 time=49.555 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 5 packets received, 28% packet loss
+round-trip min/avg/max = 46.190/47.778/50.008 ms
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker rm pinger
+pinger
+PS C:\Users\nikmast1k\Desktop\ndjs-d> docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:3b3128d9df6bbbcc92e2358e596c9fbd722a437a62bafbc51607970e9e3b8869
+Deleted: sha256:334e4a014c81bd4050daa78c7dfd2ae87855e9052721c164ea9d9d9a416ebdd3
+Deleted: sha256:98004ed6104b2f4cc21559ea6e4a742ebf6731e37b5d1b04013ca68862749ba3
